@@ -1,9 +1,8 @@
 import React from "react";
 import "./BlueCircle.css";
 
-const BlueCircle = ({ position = [0, 0], hidden = true }) => (
+const BlueCircle = ({ position = [0, 0] }) => (
   <div
-    hidden={hidden}
     className="circle"
     style={{
       left: position[0],

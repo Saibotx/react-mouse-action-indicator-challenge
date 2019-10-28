@@ -1,7 +1,7 @@
 
 .circle{
-  height: 2em;
-  width: 2em;
+  height: 5em;
+  width: 5em;
   position: fixed;
   border-radius: 50%;
   background-color: rgba(150,150,255,0.8);

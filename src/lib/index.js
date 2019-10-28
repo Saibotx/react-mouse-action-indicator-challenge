@@ -1,65 +1,75 @@
 //TODO:
-// seperate style into css file.
+// seperate style into css file. (Y)
 // write tests maybe?
-// release as package
+// release as package (Y)
 // test mobile for multitouch
 // test reject simulated events
 import React from "react";
 import BlueCircle from "./components/BlueCircle";
 
-class MouseDownContainer extends React.Component {
+class pointerDownContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.handleMouseEvent = this.handleMouseEvent.bind(this);
-    this.handleMousePosition = this.handleMousePosition.bind(this);
+    this.handlePointerEvent = this.handlePointerEvent.bind(this);
     this.state = {
-      hiddenMouseIndicator: true,
-      position: [0, 0]
+      indicators: []
     };
   }
-  handleMouseEvent(event) {
-    let hiddenMouseIndicator;
+
+  handlePointerEvent(event) {
+    let indicators = this.state.indicators;
     switch (event.type) {
-      case "mousedown":
-        hiddenMouseIndicator = false;
+      case "mousedown": //always fires before touchStart
+      case "mousemove":
+        if (!event.buttons){ //check if mouse is pressed
+          return;
+        }
+      case "drag": //handle dragging of element
+        indicators = [[event.clientX, event.clientY]]
         break;
       case "dragend":
       case "mouseup":
-        hiddenMouseIndicator = true;
+        indicators = [];
+        break
+      case "touchstart": //contains all the touches and positions on screen
+      case "touchend":
+      case 'touchmove':
+      indicators = [];
+      let touches = event.touches;
+      for (var i=0; i<touches.length; i++){
+        indicators.push([touches[i].clientX, touches[i].clientY]);
+      }
         break;
       default:
         return;
     }
-    if (hiddenMouseIndicator !== undefined) {
-      this.setState({ hiddenMouseIndicator });
-    }
+    this.setState({ indicators });
   }
-  handleMousePosition(event) {
-    if (!this.state.hiddenMouseIndicator) {
-      let position = [event.clientX, event.clientY];
-      this.setState({
-        position
-      });
-    }
-  }
+
   render() {
     return (
       <div
-        onMouseDown={this.handleMouseEvent}
-        onMouseUp={this.handleMouseEvent}
-        onMouseMove={this.handleMousePosition}
-        onDrag={this.handleMousePosition}
-        onDragEnd={this.handleMouseEvent}
-        className='asshole'
+        onMouseDown={this.handlePointerEvent}
+        onTouchStart={this.handlePointerEvent}
+
+        onTouchMove={this.handlePointerEvent}
+        onDrag={this.handlePointerEvent}
+        onMouseMove={this.handlePointerEvent}
+
+        onMouseUp={this.handlePointerEvent}
+        onTouchEnd={this.handlePointerEvent}
+        onDragEnd={this.handlePointerEvent}
+
+        className="asshole"
       >
-        <BlueCircle
-          hidden={this.state.hiddenMouseIndicator}
-          position={this.state.position}
-        />
+        {this.state.indicators.map((indicator,i) => {
+          return <BlueCircle key={i} position={indicator} />;
+        })}
+
         {this.props.children}
       </div>
     );
   }
 }
 
-export default MouseDownContainer;
+export default pointerDownContainer;
