@@ -4,10 +4,10 @@ import "./BlueCircle.css";
 const BlueCircle = ({ position = [0, 0], hidden = true }) => (
   <div
     hidden={hidden}
-    className='circle'
+    className="circle"
     style={{
       left: position[0],
-      top: position[1],
+      top: position[1]
     }}
   />
 );
