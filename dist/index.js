@@ -17,31 +17,23 @@ class MouseDownContainer extends React.Component {
       position: [0, 0]
     };
   }
-
   handleMouseEvent(event) {
     let hiddenMouseIndicator;
-
     switch (event.type) {
       case "mousedown":
         hiddenMouseIndicator = false;
         break;
-
       case "dragend":
       case "mouseup":
         hiddenMouseIndicator = true;
         break;
-
       default:
         return;
     }
-
     if (hiddenMouseIndicator !== undefined) {
-      this.setState({
-        hiddenMouseIndicator
-      });
+      this.setState({ hiddenMouseIndicator });
     }
   }
-
   handleMousePosition(event) {
     if (!this.state.hiddenMouseIndicator) {
       let position = [event.clientX, event.clientY];
@@ -50,21 +42,24 @@ class MouseDownContainer extends React.Component {
       });
     }
   }
-
   render() {
-    return React.createElement("div", {
-      onMouseDown: this.handleMouseEvent,
-      onMouseUp: this.handleMouseEvent,
-      onMouseMove: this.handleMousePosition,
-      onDrag: this.handleMousePosition,
-      onDragEnd: this.handleMouseEvent,
-      className: "asshole"
-    }, React.createElement(BlueCircle, {
-      hidden: this.state.hiddenMouseIndicator,
-      position: this.state.position
-    }), this.props.children);
+    return React.createElement(
+      "div",
+      {
+        onMouseDown: this.handleMouseEvent,
+        onMouseUp: this.handleMouseEvent,
+        onMouseMove: this.handleMousePosition,
+        onDrag: this.handleMousePosition,
+        onDragEnd: this.handleMouseEvent,
+        className: "asshole"
+      },
+      React.createElement(BlueCircle, {
+        hidden: this.state.hiddenMouseIndicator,
+        position: this.state.position
+      }),
+      this.props.children
+    );
   }
-
 }
 
 export default MouseDownContainer;

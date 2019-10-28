@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "babel": {
     "presets": [
-      "@babel/preset-react"
+      "babel-preset-react"
     ]
   },
   "dependencies": {
@@ -36,8 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/preset-react": "^7.6.3",
-    "babel-core": "^7.0.0-bridge.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
