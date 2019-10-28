@@ -7,11 +7,11 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import MouseDownContainer from '../lib';
+import MouseActionIndicator from '../lib';
 
 function App() {
   return (
-    <MouseDownContainer className="App">
+    <MouseActionIndicator className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -26,7 +26,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </MouseDownContainer>
+    </MouseActionIndicator>
   );
 }
 

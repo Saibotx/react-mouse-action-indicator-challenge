@@ -1,12 +1,12 @@
 import React from "react";
 import "./BlueCircle.css";
 
-const BlueCircle = ({ position = [0, 0] }) => (
+const BlueCircle = ({ position, state }) => (
   <div
-    className="circle"
+    className={`circle ${state}`}
     style={{
-      left: position[0],
-      top: position[1]
+      left: position.x,
+      top: position.y
     }}
   />
 );

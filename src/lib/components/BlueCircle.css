@@ -1,11 +1,27 @@
 
 .circle{
-  height: 5em;
-  width: 5em;
+  height: 1em;
+  width: 1em;
   position: fixed;
   border-radius: 50%;
-  background-color: rgba(150,150,255,0.8);
-  z-index: 10;
+  border-color: blue;
+  background-color: rgba(150,150,255,0.6);
+  z-index: 99999;
   pointer-events: none;
   transform:translate(-50%, -50%);
+  transition: all 0.2s;
+  opacity:0.2;
+}
+
+.mounted {
+  height:4em;
+  width:4em;
+  opacity:1;
+  /* transition: all 0.1s; */
+}
+
+.unmounting {
+  height:7em;
+  width:7em;;
+  opacity:0
 }
