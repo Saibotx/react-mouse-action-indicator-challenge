@@ -1,9 +1,3 @@
-//TODO:
-// seperate style into css file. (Y)
-// write tests maybe?
-// release as package (Y)
-// test mobile for multitouch
-// test reject simulated events
 import React from "react";
 import BlueCircle from "./components/BlueCircle";
 import AnimateList from "./components/AnimateList";
@@ -11,9 +5,11 @@ import AnimateList from "./components/AnimateList";
 class MouseActionIndicator extends React.Component {
   constructor(props) {
     super(props);
+    this.setTouchOnly = this.setTouchOnly.bind(this);
     this.handlePointerEvent = this.handlePointerEvent.bind(this);
     this.state = {
-      indicators: []
+      indicators: [],
+      touchOnly: false,
     };
   }
 
@@ -23,14 +19,16 @@ class MouseActionIndicator extends React.Component {
       case "mousemove":
       case "mousedown": //always fires before touchStart
       case "drag": //handle dragging of element
-        if (!event.buttons) {
+        if (!event.buttons || this.state.touchOnly) {
           return;
         }
-        console.log("event is", event);
         indicators = [{ key: "mouse", x: event.clientX, y: event.clientY }];
         break;
       case "dragend":
       case "mouseup":
+        if (this.state.touchOnly) {
+          return;
+        }
         indicators = [];
         break;
       case "touchstart": //contains all the touches and positions on screen
@@ -39,13 +37,24 @@ class MouseActionIndicator extends React.Component {
         indicators = [];
         let touches = event.touches;
         for (var i = 0; i < touches.length; i++) {
-          indicators.push([touches[i].clientX, touches[i].clientY]);
+          indicators.push({
+            key: touches[i].identifier,
+            x: touches[i].clientX,
+            y: touches[i].clientY
+          });
         }
+        this.setTouchOnly()
         break;
       default:
         return;
     }
-    this.setState({ indicators });
+    this.setState({
+      indicators
+     });
+  }
+
+  setTouchOnly(){
+    this.setState({touchOnly:true})
   }
 
   render() {
@@ -59,7 +68,6 @@ class MouseActionIndicator extends React.Component {
         onMouseUp={this.handlePointerEvent}
         onTouchEnd={this.handlePointerEvent}
         onDragEnd={this.handlePointerEvent}
-        className="asshole"
       >
         <AnimateList>
           {this.state.indicators.map(indicator => {

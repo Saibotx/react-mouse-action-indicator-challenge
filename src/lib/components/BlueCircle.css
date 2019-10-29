@@ -4,24 +4,26 @@
   width: 1em;
   position: fixed;
   border-radius: 50%;
-  border-color: blue;
-  background-color: rgba(150,150,255,0.6);
+  border: 0.1em solid rgb(100,100,255);
+  background-color: rgba(150,150,255,0.5);
   z-index: 99999;
   pointer-events: none;
   transform:translate(-50%, -50%);
-  transition: all 0.2s;
+  transition-property: opacity, height, width;
+  transition-duration: 0.15s;
   opacity:0.2;
 }
 
 .mounted {
-  height:4em;
-  width:4em;
+  height:3em;
+  width:3em;
   opacity:1;
-  /* transition: all 0.1s; */
+  /* transition: all 0.2s; */
 }
 
 .unmounting {
-  height:7em;
-  width:7em;;
-  opacity:0
+  height:6em;
+  width:6em;
+  opacity:0;
+  /* transition: all 0.15s ease-out; */
 }

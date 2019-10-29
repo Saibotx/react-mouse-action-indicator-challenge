@@ -40,8 +40,11 @@ Use this as a Higher Order Component. Anything you wrap with this component will
 
 This starts the example in src/example for local development for you to play around with.
 
-## How to contact me
+## About
 
-In the event you want to send me an angry death threat or funny meme, feel free to reach me at:
+I tried to make this with as minimal dependencies as possible. This means i freaking wrote the animation wrapper (AnimateList) myself!!!
+This actually was more effort than i thought it would be going in lol... Normally i'd probably just drop in some pre-made package to do this animation.
+
+Anyways - In the event you want to send me an angry death threat or funny meme, feel free to reach me at:
 
 ### `toby@tobygu.com`
