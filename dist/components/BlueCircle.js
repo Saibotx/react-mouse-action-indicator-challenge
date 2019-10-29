@@ -1,12 +1,27 @@
-import React from "react";
-import "./BlueCircle.css";
+"use strict";
 
-const BlueCircle = ({ position = [0, 0] }) => React.createElement("div", {
-  className: "circle",
-  style: {
-    left: position[0],
-    top: position[1]
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports["default"] = void 0;
 
-export default BlueCircle;
+var _react = _interopRequireDefault(require("react"));
+
+require("./BlueCircle.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var BlueCircle = function BlueCircle(_ref) {
+  var position = _ref.position,
+      state = _ref.state;
+  return _react["default"].createElement("div", {
+    className: "circle ".concat(state),
+    style: {
+      left: position.x,
+      top: position.y
+    }
+  });
+};
+
+var _default = BlueCircle;
+exports["default"] = _default;

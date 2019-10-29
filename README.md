@@ -3,6 +3,12 @@ Component for indicating where your pointer / touch points are when an action is
 This is especially useful if you have fat fingers and/or can't see very well.
 
 
+## Getting Started
+
+Install all dev dependencies first!
+
+### `yarn` or `npm install`
+
 ## How to build as component
 
 If for some reason you want to edit this and rebuild it as a component to drop into a project,
