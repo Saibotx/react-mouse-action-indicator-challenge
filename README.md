@@ -1,7 +1,11 @@
-#React-Mouse-Action-Indicator
+# React-Mouse-Action-Indicator
 Component for indicating where your pointer / touch points are when an action is being taken!
 This is especially useful if you have fat fingers and/or can't see very well.
 
+## The Challenge
+*Assignment: React JS component (estimate completion time ~ 1 hour)*
+Watch the video https://streamable.com/ulyfr (linked below), observe that for all tap and drag events, there is a blue dot ripple showing the event action.
+Write a React component that replicates the touch / drag ripple for Touch as well as Mouse events (meaning it should work both on mobile and desktop devices). This component should be able to handle multiple touches on a touch device. It should also reject emulated mouse events. The component should be able to be used directly by any React project.
 
 ## Getting Started
 
